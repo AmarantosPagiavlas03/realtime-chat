@@ -1,13 +1,10 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+// android/build.gradle (Top-level)
 buildscript {
     ext {
         buildToolsVersion = "33.0.0"
         minSdkVersion = 21
-        compileSdkVersion = 33
-        targetSdkVersion = 33
-
-        // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
+        compileSdkVersion = 34
+        targetSdkVersion = 34
         ndkVersion = "23.1.7779620"
         kotlinVersion = '1.8.22'
     }
@@ -16,7 +13,23 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
+        classpath("com.android.tools.build:gradle:8.1.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+subprojects { subproject ->
+    afterEvaluate {
+        if (subproject.hasProperty("android") && subproject.android.hasProperty("buildFeatures")) {
+            subproject.android.buildFeatures.buildConfig = true
+        }
     }
 }
