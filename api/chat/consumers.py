@@ -376,6 +376,7 @@ class ChatConsumer(WebsocketConsumer):
 			'source': source,
 			'data': data
 		}
+		 
 		async_to_sync(self.channel_layer.group_send)(
 			group, response
 		)

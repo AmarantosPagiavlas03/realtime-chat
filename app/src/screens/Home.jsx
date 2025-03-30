@@ -8,6 +8,7 @@ import FriendsScreen from "./Friends"
 import ProfileScreen from "./Profile"
 import useGlobal from "../core/global"
 import Thumbnail from "../common/Thumbnail"
+import AdvancedSearchScreen from "./AdvancedSearch"
 
 
 const Tab = createBottomTabNavigator()
@@ -61,6 +62,7 @@ function HomeScreen({ navigation }) {
 				),
 				tabBarIcon: ({ focused, color, size }) => {
 					const icons = {
+						AdvancedSearch: 'magnifying-glass',
 						Requests: 'bell',
 						Friends: 'inbox',
 						Profile: 'user'
@@ -74,7 +76,8 @@ function HomeScreen({ navigation }) {
 				tabBarShowLabel: false
 			})}
 		>
-      <Tab.Screen name="Requests" component={RequestsScreen} />
+      		<Tab.Screen name="AdvancedSearch" component={AdvancedSearchScreen} />
+      		<Tab.Screen name="Requests" component={RequestsScreen} />
 			<Tab.Screen name="Friends"  component={FriendsScreen} />
 			<Tab.Screen name="Profile"  component={ProfileScreen} />
     </Tab.Navigator>
